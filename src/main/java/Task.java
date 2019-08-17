@@ -1,20 +1,18 @@
 class Task {
-    private String[] arr;
-    private int counter;
+    private String task;
+    private Boolean done;
 
-    Task() {
-        arr = new String[100];
-        counter = 0;
-    }
-    void addTask(String task) {
-        arr[counter] = task;
-        counter++;
-        System.out.println("added: " + task);
+    Task(String task) {
+        this.task = task;
+        done = false;
     }
 
-    void displayList() {
-        for (int i = 0; i < counter; i++) {
-            System.out.println(i + 1 + ". " + arr[i]);
-        }
+    void setTaskDone() {
+        done = true;
+    }
+
+    String displayTask() {
+        String completed = (done) ? "[✓] " : "[✗] ";
+        return completed + task;
     }
  }
