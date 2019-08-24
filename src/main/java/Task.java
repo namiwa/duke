@@ -1,6 +1,7 @@
-class Task {
-    private String task;
-    private Boolean done;
+public class Task {
+    protected String task;
+    protected Boolean done;
+
 
     Task(String task) {
         this.task = task;
@@ -11,7 +12,9 @@ class Task {
         done = true;
     }
 
-    String displayTask() {
+
+    @Override
+    public String toString() {
         String completed = (done) ? "[✓] " : "[✗] ";
         return completed + task;
     }
