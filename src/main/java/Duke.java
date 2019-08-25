@@ -20,22 +20,26 @@ public class Duke {
                 LINE);
     }
 
-    private void addedTaskMsg(String task) {
-        System.out.println("added: " + task);
-    }
-
+    private void tryAgainCommand() {System.out.println("Please input the right command!");}
     private void tryAgainNumber() {
         System.out.println("Please input a number!");
     }
     private void tryAgainIndex() {
-        System.out.println("Please check your index!");
+        System.out.println("Please check your index or list size!");
     }
 
+    private void addedTaskMsg() { System.out.println("Got it. I've added this task:");}
+    private void currentTaskListSizeMsg() {
+        System.out.println(
+                "Now you have " +
+                taskList.size() +
+                " tasks in the list.");
+    }
     private void doneTaskMsg() {
         System.out.println("Nice! I've marked this task as done:");
     }
+    private void lastTaskAddedMessage() { System.out.println(taskList.get(taskList.size() - 1)); }
 
-    //TODO: change from boolean to void, throws illegal index access later
     private void checkValidDoneIndex(String input) throws NumberFormatException, IllegalAccessError {
         String[] hold = input.split(" ");
         int test = hold.length;
@@ -43,7 +47,7 @@ public class Duke {
         if (test > 2) {
             throw new NumberFormatException();
         } else if(index > taskList.size()) {
-            throw new NumberFormatException();
+            throw new IllegalAccessError();
         } else if(index  <= 0) {
             throw new IllegalAccessError();
         } else {
@@ -57,7 +61,11 @@ public class Duke {
         System.out.println(taskList.get(index - 1));
     }
 
-    private void displayAllTasks() {
+    private void displayAllTasks() throws IllegalAccessError {
+        if (taskList.isEmpty()) {
+            throw new IllegalAccessError();
+        }
+        System.out.println("Here are the tasks in your list:");
         int count = 1;
         for (Task temp : taskList) {
             System.out.println(count + ". " + temp);
@@ -65,11 +73,40 @@ public class Duke {
         }
     }
 
+    private String[] testRegex(String inputs) {
+        return inputs.split("/");
+    }
+
+    private void parseTask(String input) throws DukeCommandException {
+        if (input.startsWith("todo")) {
+            String[] temp = input.split("todo ");
+            String [] split = testRegex(temp[temp.length - 1]);
+            taskList.add(new Todo(split));
+        } else if (input.startsWith("event")) {
+            String[] temp = input.split("event ");
+            String [] split = testRegex(temp[temp.length - 1]);
+            taskList.add(new Events(split));
+        } else if (input.startsWith("deadline")) {
+            String[] temp = input.split("deadline ");
+            String [] split = testRegex(temp[temp.length - 1]);
+            taskList.add(new Deadline(split));
+        } else {
+            throw new DukeCommandException();
+        }
+        addedTaskMsg();
+        lastTaskAddedMessage();
+        currentTaskListSizeMsg();
+    }
+
     private void loopMsg() {
         String input = scan.nextLine();
         while (!input.equals("bye")) {
             if (input.equals("list")) {
-                displayAllTasks();
+                try {
+                    displayAllTasks();
+                } catch (IllegalAccessError e) {
+                    tryAgainIndex();
+                }
             } else if (input.startsWith("done")) {
                 try {
                     checkValidDoneIndex(input);
@@ -79,8 +116,11 @@ public class Duke {
                     tryAgainIndex();
                 }
             } else {
-                taskList.add(new Task(input));
-                addedTaskMsg(input);
+                try {
+                    parseTask(input);
+                } catch (DukeCommandException e) {
+                    tryAgainCommand();
+                }
             }
             input = scan.nextLine();
         }
