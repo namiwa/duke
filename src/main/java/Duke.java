@@ -20,7 +20,8 @@ public class Duke {
                 LINE);
     }
 
-    private void tryAgainCommand() {System.out.println("Please input the right command!");}
+    private void tryAgainCommand() { System.out.println("Please input the right command!"); }
+    private void tryAgainCommandEmpty() { System.out.println("Adding command cannot be empty!"); }
     private void tryAgainNumber() {
         System.out.println("Please input a number!");
     }
@@ -73,22 +74,49 @@ public class Duke {
         }
     }
 
-    private String[] testRegex(String inputs) {
-        return inputs.split("/");
+    private String[] testRegex(String inputs) throws DukeEmptyCommandException {
+        if (inputs.startsWith("deadline")) {
+            if (!inputs.contains("/by")) {
+                throw new DukeEmptyCommandException();
+            }
+        }
+        if (inputs.startsWith("event")) {
+            if (!inputs.contains("/at")) {
+                throw new DukeEmptyCommandException();
+            }
+        }
+        if (inputs.equals("todo")) {
+            throw new DukeEmptyCommandException();
+        }
+
+        String[] res = inputs.split("/");
+        if (res.length == 0) {
+            throw new DukeEmptyCommandException();
+        }
+        return res;
     }
 
-    private void parseTask(String input) throws DukeCommandException {
-        if (input.startsWith("todo")) {
+    private void parseTask(String input) throws DukeCommandException, DukeEmptyCommandException {
+        if (input.startsWith("todo ")) {
             String[] temp = input.split("todo ");
             String [] split = testRegex(temp[temp.length - 1]);
+            if (!temp[0].equals("")) {
+                throw new DukeCommandException();
+            }
             taskList.add(new Todo(split));
-        } else if (input.startsWith("event")) {
+        } else if (input.startsWith("event ")) {
             String[] temp = input.split("event ");
             String [] split = testRegex(temp[temp.length - 1]);
+            if (!temp[0].equals("")) {
+                throw new DukeCommandException();
+            }
             taskList.add(new Events(split));
-        } else if (input.startsWith("deadline")) {
+        } else if (input.startsWith("deadline ")) {
             String[] temp = input.split("deadline ");
             String [] split = testRegex(temp[temp.length - 1]);
+            if (!temp[0].equals("")) {
+                throw new DukeCommandException();
+            }
             taskList.add(new Deadline(split));
         } else {
             throw new DukeCommandException();
@@ -120,6 +148,8 @@ public class Duke {
                     parseTask(input);
                 } catch (DukeCommandException e) {
                     tryAgainCommand();
+                } catch (DukeEmptyCommandException e) {
+                    tryAgainCommandEmpty();
                 }
             }
             input = scan.nextLine();
