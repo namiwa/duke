@@ -7,14 +7,15 @@ public class Deadline extends Task {
     }
 
     private void setDateAndTime(String dateAndTime) {
-        String formattedDateAndTime = dateAndTime.trim();
-        formattedDateAndTime = formattedDateAndTime.replaceFirst("by", "(by:");
-        this.dateAndTime = formattedDateAndTime + ")";
+        this.dateAndTime = dateAndTime;
     }
 
+    public String writingFile() {
+        return "D" + "|" + super.writingFile() + "|" + dateAndTime;
+    }
 
     public String toString() {
-        return "[D]" + super.toString() + dateAndTime;
+        return "[D]" + super.toString() + "(by: " + dateAndTime + ")";
     }
 
 

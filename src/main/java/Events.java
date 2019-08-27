@@ -7,14 +7,16 @@ public class Events extends Task {
     }
 
     private void setDateAndTime(String dateAndTime) {
-        String formattedDateAndTime = dateAndTime.trim();
-        formattedDateAndTime = formattedDateAndTime.replaceFirst("at", "(at:");
-        this.dateAndTime = formattedDateAndTime + ")";
+        this.dateAndTime = dateAndTime;
+    }
+
+    public String writingFile() {
+        return "E" + "|" + super.writingFile() + "|" + dateAndTime;
     }
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + dateAndTime;
+        return "[E]" + super.toString() + "(at: " + dateAndTime + ")";
     }
 
 }

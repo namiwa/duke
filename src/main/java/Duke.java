@@ -5,10 +5,18 @@ import java.util.List;
 public class Duke {
     private Scanner scan;
     private List<Task> taskList;
+    private Storage store;
 
     private Duke() {
         scan = new Scanner(System.in);
         taskList = new ArrayList<>();
+        store = new Storage();
+    }
+
+    private void readStoredData() {
+       if (store.getFileExits()) {
+           taskList = store.readData();
+       }
     }
 
     private void helloMsg() {
@@ -110,6 +118,8 @@ public class Duke {
             if (!temp[0].equals("")) {
                 throw new DukeCommandException();
             }
+            split[split.length - 1] = split[split.length - 1].trim();
+            split[split.length - 1] = split[split.length - 1].replaceFirst("at ", "");
             taskList.add(new Events(split));
         } else if (input.startsWith("deadline ")) {
             String[] temp = input.split("deadline ");
@@ -117,6 +127,8 @@ public class Duke {
             if (!temp[0].equals("")) {
                 throw new DukeCommandException();
             }
+            split[split.length - 1] = split[split.length - 1].trim();
+            split[split.length - 1] = split[split.length - 1].replaceFirst("by ", "");
             taskList.add(new Deadline(split));
         } else {
             throw new DukeCommandException();
@@ -158,6 +170,7 @@ public class Duke {
 
     private void goodbyeMsg() {
         System.out.println("Bye. Hope to see you again soon!");
+        store.writeData(taskList);
         closeScan();
     }
 
@@ -167,6 +180,7 @@ public class Duke {
 
     public static void main(String[] args) {
         Duke duke = new Duke();
+        duke.readStoredData();
         duke.helloMsg();
         duke.loopMsg();
         duke.goodbyeMsg();

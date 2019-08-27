@@ -1,6 +1,6 @@
 public class Task {
-    protected String task;
-    protected Boolean done;
+    private String task;
+    private Boolean done;
 
 
     Task(String task) {
@@ -12,6 +12,13 @@ public class Task {
         done = true;
     }
 
+    public boolean getDone() {
+        return done;
+    }
+
+    public String writingFile() {
+        return task + "|" + (getDone() ? "1" : "0");
+    }
 
     @Override
     public String toString() {
