@@ -1,0 +1,75 @@
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.regex.Pattern;
+
+public class Storage {
+    private Path path;
+    private boolean fileExits;
+
+    Storage() {
+        path = Paths.get("DukeData.txt");
+        fileExits = Files.isRegularFile(path);
+    }
+
+    boolean getFileExits() {
+        return fileExits;
+    }
+
+    void writeData(List<Task> taskList) {
+        List<String> store = new ArrayList<>();
+        for (Task temp : taskList) {
+            store.add(temp.writingFile());
+        }
+        try {
+            Files.write(path, store, StandardCharsets.UTF_8);
+        } catch (IOException e) {
+            System.err.format("IOException: %s%n", e);
+        }
+    }
+
+    public List<Task> readData() {
+     List<Task> list = new ArrayList<>();
+     List<String> lines = Collections.emptyList();
+
+     try {
+         lines = Files.readAllLines(path, StandardCharsets.UTF_8);
+     } catch (IOException e) {
+         e.printStackTrace();
+     }
+
+        for (String line:lines) {
+            String[] hold = line.split(Pattern.quote("|"));
+            switch (hold[0]) {
+                case "E":
+                    Events t_events = new Events(hold[1], hold[3]);
+                    if (hold[2].equals("1")) {
+                        t_events.setTaskDone();
+                    }
+                    list.add(t_events);
+                    break;
+                case "D":
+                    Deadline t_deadline = new Deadline(hold[1], hold[3]);
+                    if (hold[2].equals("1")) {
+                        t_deadline.setTaskDone();
+                    }
+                    list.add(t_deadline);
+                    break;
+                case "T":
+                    Todo t_todo = new Todo(hold[1]);
+                    if (hold[2].equals("1")) {
+                        t_todo.setTaskDone();
+                    }
+                    list.add(t_todo);
+                    break;
+            }
+        }
+        return list;
+    }
+
+}
