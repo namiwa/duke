@@ -97,7 +97,7 @@ public class Duke {
             throw new DukeEmptyCommandException();
         }
 
-        String[] res = inputs.split("/");
+        String[] res = inputs.split("/", 2);
         if (res.length == 0) {
             throw new DukeEmptyCommandException();
         }
@@ -134,6 +134,7 @@ public class Duke {
             throw new DukeCommandException();
         }
         addedTaskMsg();
+        store.writeData(taskList);
         lastTaskAddedMessage();
         currentTaskListSizeMsg();
     }
