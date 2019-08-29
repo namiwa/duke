@@ -1,12 +1,9 @@
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Deadline extends Task {
     private String dateAndTime;
-    private Date date;
+    private LocalDate date;
 
     Deadline(String... input) {
         super(input[0]);
@@ -22,12 +19,7 @@ public class Deadline extends Task {
 
     private void setStringToDate(String dateAndTime) {
         String[] split = dateAndTime.split(" ");
-        DateFormat format = new SimpleDateFormat("dd/MM/YYYY", Locale.ENGLISH);
-        try {
-            date = format.parse(split[0]);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        date = LocalDate.parse(split[0], DateTimeFormatter.ofPattern("d/MM/yyyy"));
     }
 
     public String writingFile() { return "D" + "|" + super.writingFile() + "|" + dateAndTime; }

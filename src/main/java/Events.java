@@ -1,12 +1,11 @@
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 public class Events extends Task {
     private String dateAndTime;
-    private Date date;
+    private LocalDateTime dateTime;
 
     Events(String... input) {
         super(input[0]);
@@ -20,14 +19,12 @@ public class Events extends Task {
         this.dateAndTime = dateAndTime;
     }
 
+
     private void setStringToDate(String dateAndTime) {
         String[] split = dateAndTime.split(" ");
-        DateFormat format = new SimpleDateFormat("dd/MM/YYYY", Locale.ENGLISH);
-        try {
-            date = format.parse(split[0]);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        LocalDate datePart = LocalDate.parse(split[0], DateTimeFormatter.ofPattern("d/MM/yyyy"));
+        LocalTime timePart = LocalTime.parse(split[1], DateTimeFormatter.ofPattern("HHmm"));
+        dateTime =  LocalDateTime.of(datePart, timePart);
     }
 
     public String writingFile() {
