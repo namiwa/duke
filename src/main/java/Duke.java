@@ -64,6 +64,13 @@ public class Duke {
         }
     }
 
+    private void deleteMsg(int index) {
+        System.out.println("Noted. I've removed this task:");
+        System.out.println(taskList.get(index - 1));
+        taskList.remove(index - 1);
+        currentTaskListSizeMsg();
+    }
+
     private void setDoneTask(int index) {
         taskList.get(index - 1).setTaskDone();
         doneTaskMsg();
@@ -139,6 +146,23 @@ public class Duke {
         currentTaskListSizeMsg();
     }
 
+    private void deleteTask(String input) throws IllegalAccessException, DukeEmptyCommandException {
+        String[] split = input.split(" ", 2);
+        int res = -1;
+        if (split[split.length - 1].equals("")) {
+            throw new DukeEmptyCommandException();
+        }
+        try {
+            res = Integer.parseInt(split[split.length - 1]);
+        } catch (NumberFormatException e) {
+            tryAgainNumber();
+        }
+        if (res < 1 || res > taskList.size()) {
+            throw new IllegalAccessException();
+        }
+        deleteMsg(res);
+    }
+
     private void loopMsg() {
         String input = scan.nextLine();
         while (!input.equals("bye")) {
@@ -155,6 +179,14 @@ public class Duke {
                     tryAgainNumber();
                 } catch (IllegalAccessError e) {
                     tryAgainIndex();
+                }
+            }  else if (input.startsWith("delete")) {
+                try {
+                   deleteTask(input);
+                } catch (IllegalAccessException e) {
+                    tryAgainIndex();
+                } catch (DukeEmptyCommandException e) {
+                    tryAgainCommandEmpty();
                 }
             } else {
                 try {
