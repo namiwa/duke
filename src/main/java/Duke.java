@@ -152,6 +152,7 @@ public class Duke {
         if (split[split.length - 1].equals("")) {
             throw new DukeEmptyCommandException();
         }
+
         try {
             res = Integer.parseInt(split[split.length - 1]);
         } catch (NumberFormatException e) {
