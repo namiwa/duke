@@ -13,7 +13,7 @@ public class Storage {
     private boolean fileExits;
 
     Storage() {
-        path = Paths.get("DukeData.txt");
+        path = Paths.get("data/dukeData.text");
         fileExits = Files.isRegularFile(path);
     }
 
@@ -27,9 +27,13 @@ public class Storage {
             store.add(temp.writingFile());
         }
         try {
+            if (!fileExits) {
+                Files.createDirectories(path.getParent());
+                Files.createFile(path);
+            }
             Files.write(path, store, StandardCharsets.UTF_8);
         } catch (IOException e) {
-            System.err.format("IOException: %s%n", e);
+            e.printStackTrace();
         }
     }
 
