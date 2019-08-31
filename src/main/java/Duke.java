@@ -14,18 +14,18 @@ public class Duke {
     }
 
     private void readStoredData() {
-       if (store.getFileExits()) {
-           taskList = store.readData();
-       }
+        if (store.getFileExits()) {
+            taskList = store.readData();
+        }
     }
 
     private void helloMsg() {
         String LINE = "_______________________________\n";
         System.out.println(
                 LINE +
-                "Hello! I'm Duke\n" +
-                "What can I do for you?\n" +
-                LINE);
+                        "Hello! I'm Duke\n" +
+                        "What can I do for you?\n" +
+                        LINE);
     }
 
     private void tryAgainCommand() { System.out.println("Please input the right command!"); }
@@ -41,8 +41,8 @@ public class Duke {
     private void currentTaskListSizeMsg() {
         System.out.println(
                 "Now you have " +
-                taskList.size() +
-                " tasks in the list.");
+                        taskList.size() +
+                        " tasks in the list.");
     }
     private void doneTaskMsg() {
         System.out.println("Nice! I've marked this task as done:");
@@ -97,12 +97,29 @@ public class Duke {
             throw new DukeEmptyCommandException();
         }
 
-        String[] res = inputs.split("/", 2);
+        String[] res = inputs.split("/");
         if (res.length == 0) {
             throw new DukeEmptyCommandException();
         }
         return res;
     }
+
+    private void parseFind(String input) {
+        String[] split = input.split(" ", 2);
+        List<Task> temp = new ArrayList<>();
+        for (Task hold : taskList) {
+            if (hold.getTask().contains(split[split.length - 1])) {
+                temp.add(hold);
+            }
+        }
+        System.out.println("Here are the matching tasks in your list:");
+        int count = 1;
+        for (Task hold : temp) {
+            System.out.println(count + ". " + hold);
+            count++;
+        }
+    }
+
 
     private void parseTask(String input) throws DukeCommandException, DukeEmptyCommandException {
         if (input.startsWith("todo ")) {
@@ -134,7 +151,6 @@ public class Duke {
             throw new DukeCommandException();
         }
         addedTaskMsg();
-        store.writeData(taskList);
         lastTaskAddedMessage();
         currentTaskListSizeMsg();
     }
@@ -148,6 +164,8 @@ public class Duke {
                 } catch (IllegalAccessError e) {
                     tryAgainIndex();
                 }
+            } else if (input.startsWith("find")) {
+                parseFind(input);
             } else if (input.startsWith("done")) {
                 try {
                     checkValidDoneIndex(input);
