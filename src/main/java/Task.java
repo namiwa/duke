@@ -12,6 +12,10 @@ public class Task {
         done = true;
     }
 
+    public String getTask() {
+        return task;
+    }
+
     public boolean getDone() {
         return done;
     }
