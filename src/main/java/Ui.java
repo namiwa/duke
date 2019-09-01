@@ -69,6 +69,15 @@ public class Ui {
         }
     }
 
+    public void findMsg(List<Task> taskList) {
+        System.out.println("Here are the matching tasks in your list:");
+        int count = 1;
+        for (Task temp : taskList) {
+            System.out.println(count + ". " + temp);
+            count++;
+        }
+    }
+
     public void goodbyeMsg() {
         System.out.println("Bye. Hope to see you again soon!");
     }
