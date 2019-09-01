@@ -12,6 +12,10 @@ public class TaskList {
         }
     }
 
+    public List<Task> getTasks() {
+        return tasks;
+    }
+
     public List<Task> find(String input) {
         List<Task> temp = new ArrayList<>();
         for (Task hold : tasks) {

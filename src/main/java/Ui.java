@@ -1,6 +1,22 @@
+import java.util.Scanner;
+
 public class Ui {
+    private Scanner scan;
+    private static String LINE = "_______________________________\n";
+
+    public Ui() {
+        scan = new Scanner(System.in);
+    }
+
+    public void closeScan() {
+        scan.close();
+    }
+
+    public String readCommand(String input) {
+        return scan.nextLine();
+    }
+
     public void helloMsg() {
-        String LINE = "_______________________________\n";
         System.out.println(
                 LINE +
                         "Hello! I'm Duke\n" +
@@ -8,41 +24,45 @@ public class Ui {
                         LINE);
     }
 
-    private void tryAgainCommand() {
+    public void line() {
+        System.out.print(LINE);
+    }
+
+    public void tryAgainCommand() {
         System.out.println("Please input the right command!");
     }
 
-    private void tryAgainCommandEmpty() {
+    public void tryAgainCommandEmpty() {
         System.out.println("Adding command cannot be empty!");
     }
 
-    private void tryAgainNumber() {
+    public void tryAgainNumber() {
         System.out.println("Please input a number!");
     }
 
-    private void tryAgainIndex() {
+    public void tryAgainIndex() {
         System.out.println("Please check your index");
     }
 
-    private void tryAgainListSize() {
+    public void tryAgainListSize() {
         System.out.println("Please check your list size!");
     }
 
-    private void addedTaskMsg() {
+    public void addedTaskMsg() {
         System.out.println("Got it. I've added this task:");
     }
 
-    private void currentTaskListSizeMsg(int size) {
+    public void currentTaskListSizeMsg(int size) {
         System.out.println(
                 "Now you have " +
                         size +
                         " tasks in the list.");
     }
-    private void doneTaskMsg() {
+    public void doneTaskMsg() {
         System.out.println("Nice! I've marked this task as done:");
     }
 
-    private void printTask(Task task) {
+    public void printTask(Task task) {
         System.out.println(task);
     }
 
