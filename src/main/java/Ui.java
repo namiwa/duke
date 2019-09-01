@@ -59,7 +59,7 @@ public class Ui {
                         " tasks in the list.");
     }
     public void doneTaskMsg(Task task) {
-        System.out.println("Nice! I've marked this task as done:" + task);
+        System.out.println("Nice! I've marked this task as done:\n" + task);
     }
 
     public void printTask(Task task) {
@@ -68,6 +68,10 @@ public class Ui {
 
     public void goodbyeMsg() {
         System.out.println("Bye. Hope to see you again soon!");
+    }
+
+    public void deleteMsg(Task task) {
+        System.out.println("Noted. I've removed this task:\n" + task);
     }
 
 
