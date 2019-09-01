@@ -1,3 +1,3 @@
-public class DukeCommandException extends Exception {
+public class DukeCommandException extends DukeException {
 
 }
