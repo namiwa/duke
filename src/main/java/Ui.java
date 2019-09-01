@@ -58,8 +58,8 @@ public class Ui {
                         size +
                         " tasks in the list.");
     }
-    public void doneTaskMsg() {
-        System.out.println("Nice! I've marked this task as done:");
+    public void doneTaskMsg(Task task) {
+        System.out.println("Nice! I've marked this task as done:" + task);
     }
 
     public void printTask(Task task) {
