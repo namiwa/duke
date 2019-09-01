@@ -1,3 +1,4 @@
+import java.util.List;
 import java.util.Scanner;
 
 public class Ui {
@@ -62,8 +63,10 @@ public class Ui {
         System.out.println("Nice! I've marked this task as done:\n" + task);
     }
 
-    public void printTask(Task task) {
-        System.out.println(task);
+    public void printTaskList(List<Task> taskList) {
+        for (Task temp : taskList) {
+            System.out.println(temp);
+        }
     }
 
     public void goodbyeMsg() {
