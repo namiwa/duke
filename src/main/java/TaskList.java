@@ -12,7 +12,7 @@ public class TaskList {
         }
     }
 
-    private List<Task> find(String input) {
+    public List<Task> find(String input) {
         List<Task> temp = new ArrayList<>();
         for (Task hold : tasks) {
             if (hold.getTask().contains(input)) {
@@ -22,12 +22,20 @@ public class TaskList {
         return temp;
     }
 
-    private void add(Task task) {
+    public void add(Task task) {
         tasks.add(task);
     }
 
-    private void delete(int index) {
+    public void delete(int index) {
         tasks.remove(index - 1);
+    }
+
+    public int getSize() {
+        return tasks.size();
+    }
+
+    public Task getLastTask() {
+        return tasks.get(tasks.size() - 1);
     }
 
 }
