@@ -66,4 +66,10 @@ public class Ui {
         System.out.println(task);
     }
 
+    public void goodbyeMsg() {
+        System.out.println("Bye. Hope to see you again soon!");
+    }
+
+
+
 }
