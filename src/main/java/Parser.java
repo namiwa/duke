@@ -1,19 +1,17 @@
 public class Parser {
 
-    private Command checkValidDoneIndex(String input) throws NumberFormatException, IllegalAccessError {
+    private static Command checkValidDoneIndex(String input) throws DukeEmptyCommandException {
         String[] hold = input.split(" ");
         int test = hold.length;
         int index = Integer.parseInt(hold[1]);
         if (test > 2) {
-            throw new NumberFormatException();
-        }  else if(index  <= 0) {
-            throw new IllegalAccessError();
+            throw new DukeEmptyCommandException();
         } else {
             return new DoneCommand(index);
         }
     }
 
-    private String[] testRegex(String inputs) throws DukeEmptyCommandException {
+    private static String[] testRegex(String inputs) throws DukeEmptyCommandException {
         if (inputs.startsWith("deadline")) {
             if (!inputs.contains("/by")) {
                 throw new DukeEmptyCommandException();
@@ -35,7 +33,7 @@ public class Parser {
         return res;
     }
 
-    private Command deleteTask(String input) throws DukeEmptyCommandException, DukeCommandException {
+    private static Command deleteTask(String input) throws DukeEmptyCommandException, DukeCommandException {
         String[] split = input.split(" ", 2);
         int res = -1;
         if (split[split.length - 1].equals("")) {
@@ -49,12 +47,12 @@ public class Parser {
         return new DeleteCommand(res);
     }
 
-    private Command parseFind(String input) {
+    private static Command parseFind(String input) {
         String[] split = input.split(" ", 2);
         return new FindCommand(split[1]);
     }
 
-    public Command parse(String input) throws DukeCommandException, DukeEmptyCommandException {
+    public static Command parse(String input) throws DukeCommandException, DukeEmptyCommandException {
         if (input.startsWith("todo ")) {
             String[] temp = input.split("todo ");
             String [] split = testRegex(temp[temp.length - 1]);

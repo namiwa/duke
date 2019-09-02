@@ -10,7 +10,7 @@ public class AddCommand extends Command {
     public void execute(TaskList tasks, Ui ui, Storage store) {
         tasks.add(task);
         ui.addedTaskMsg();
-        tasks.getLastTask();
+        ui.printTask(task);
         ui.currentTaskListSizeMsg(tasks.getSize());
         store.writeData(tasks.getTasks());
     }

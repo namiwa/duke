@@ -13,7 +13,7 @@ public class Ui {
         scan.close();
     }
 
-    public String readCommand(String input) {
+    public String readCommand() {
         return scan.nextLine();
     }
 
@@ -25,7 +25,7 @@ public class Ui {
                         LINE);
     }
 
-    public void line() {
+    public void showLine() {
         System.out.print(LINE);
     }
 
@@ -69,6 +69,10 @@ public class Ui {
         }
     }
 
+    public void printTask(Task task) {
+        System.out.println(task);
+    }
+
     public void findMsg(List<Task> taskList) {
         System.out.println("Here are the matching tasks in your list:");
         int count = 1;
@@ -80,12 +84,11 @@ public class Ui {
 
     public void goodbyeMsg() {
         System.out.println("Bye. Hope to see you again soon!");
+        closeScan();
     }
 
     public void deleteMsg(Task task) {
         System.out.println("Noted. I've removed this task:\n" + task);
     }
-
-
 
 }

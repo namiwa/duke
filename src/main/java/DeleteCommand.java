@@ -8,11 +8,15 @@ public class DeleteCommand extends Command {
 
 
     @Override
-    public void execute(TaskList task, Ui ui, Storage store) {
-        Task temp = task.getTasks().get(index - 1);
-        task.getTasks().remove(index- 1);
-        ui.deleteMsg(temp);
-        store.writeData(task.getTasks());
+    public void execute(TaskList tasks, Ui ui, Storage store) throws DukeInvalidIndexException {
+        if (index - 1 < 0 || index - 1 >= tasks.getTasks().size()) {
+            throw new DukeInvalidIndexException();
+        } else {
+            Task temp = tasks.getTasks().get(index - 1);
+            tasks.getTasks().remove(index - 1);
+            ui.deleteMsg(temp);
+            store.writeData(tasks.getTasks());
+        }
     }
 
     @Override
