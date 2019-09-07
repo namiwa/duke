@@ -6,6 +6,13 @@ public class AddCommand extends Command {
         this.task = task;
     }
 
+    /**
+     * Takes in TaskList, Ui and Storage objects which then adds
+     * a new task at the end of the TaskList.
+     * @param tasks TaskList object containing current active taskList.
+     * @param ui Ui object containing all output methods to user.
+     * @param store Storage object which updates stored data.
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage store) {
         tasks.add(task);
