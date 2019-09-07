@@ -1,4 +1,8 @@
-package Duke;
+package Duke.Command;
+
+import Duke.Util.*;
+import Duke.Tasks.Task;
+import Duke.Exceptions.DukeInvalidIndexException;
 
 public class DeleteCommand extends Command {
 

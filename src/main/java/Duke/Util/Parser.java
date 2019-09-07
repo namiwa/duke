@@ -1,4 +1,9 @@
-package Duke;
+package Duke.Util;
+
+import Duke.Command.*;
+import Duke.Tasks.*;
+import Duke.Exceptions.DukeCommandException;
+import Duke.Exceptions.DukeEmptyCommandException;
 
 public class Parser {
 

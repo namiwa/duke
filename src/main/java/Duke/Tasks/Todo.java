@@ -1,7 +1,7 @@
-package Duke;
+package Duke.Tasks;
 
 public class Todo extends Task {
-    Todo(String... input) {
+    public Todo(String... input) {
         super(input[0]);
     }
 

@@ -1,4 +1,8 @@
-package Duke;
+package Duke.Command;
+
+import Duke.Tasks.*;
+import Duke.Util.*;
+
 
 public class AddCommand extends Command {
 

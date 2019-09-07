@@ -1,4 +1,4 @@
-package Duke;
+package Duke.Tasks;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -9,7 +9,7 @@ public class Deadline extends Task {
     private String dateAndTime;
     private LocalDateTime dateTime;
 
-    Deadline(String... input) {
+    public Deadline(String... input) {
         super(input[0]);
         setDateAndTime(input[input.length - 1]);
     }

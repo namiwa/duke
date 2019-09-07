@@ -1,16 +1,16 @@
-package Duke;
+package Duke.Tasks;
 
 public class Task {
     private String task;
     private Boolean done;
 
 
-    Task(String task) {
+    public Task(String task) {
         this.task = task;
         done = false;
     }
 
-    void setTaskDone() {
+    public void setTaskDone() {
         done = true;
     }
 

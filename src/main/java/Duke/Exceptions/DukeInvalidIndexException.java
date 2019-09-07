@@ -1,4 +1,4 @@
-package Duke;
+package Duke.Exceptions;
 
 public class DukeInvalidIndexException extends DukeException {
     @Override

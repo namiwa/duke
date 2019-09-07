@@ -1,4 +1,6 @@
-package Duke;
+package Duke.Util;
+
+import Duke.Tasks.*;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -19,7 +21,7 @@ public class Storage {
     private Path path;
     private boolean fileExits;
 
-    Storage() {
+    public Storage() {
         path = Paths.get("data/dukeData.text");
         fileExits = Files.isRegularFile(path);
     }

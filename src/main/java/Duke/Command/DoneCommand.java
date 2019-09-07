@@ -1,4 +1,7 @@
-package Duke;
+package Duke.Command;
+
+import Duke.Util.*;
+import Duke.Exceptions.DukeInvalidIndexException;
 
 public class DoneCommand extends Command {
 

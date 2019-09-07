@@ -1,4 +1,9 @@
-package Duke;
+package Duke.Command;
+
+import Duke.Exceptions.DukeException;
+import Duke.Util.Storage;
+import Duke.Util.TaskList;
+import Duke.Util.Ui;
 
 public abstract class Command {
 

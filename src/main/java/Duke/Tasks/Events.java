@@ -1,4 +1,4 @@
-package Duke;
+package Duke.Tasks;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -9,7 +9,7 @@ public class Events extends Task {
     private String dateAndTime;
     private LocalDateTime dateTime;
 
-    Events(String... input) {
+    public Events(String... input) {
         super(input[0]);
         setDateAndTime(input[input.length - 1]);
     }

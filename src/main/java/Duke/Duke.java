@@ -1,5 +1,12 @@
 package Duke;
 
+import Duke.Command.Command;
+import Duke.Exceptions.DukeException;
+import Duke.Util.Parser;
+import Duke.Util.Storage;
+import Duke.Util.TaskList;
+import Duke.Util.Ui;
+
 public class Duke {
     /**
      * Classes used for storage of data,
