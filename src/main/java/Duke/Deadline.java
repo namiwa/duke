@@ -1,13 +1,15 @@
+package Duke;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
-public class Events extends Task {
+public class Deadline extends Task {
     private String dateAndTime;
     private LocalDateTime dateTime;
 
-    Events(String... input) {
+    Deadline(String... input) {
         super(input[0]);
         setDateAndTime(input[input.length - 1]);
     }
@@ -19,7 +21,6 @@ public class Events extends Task {
         this.dateAndTime = dateAndTime;
     }
 
-
     private void setStringToDate(String dateAndTime) {
         String[] split = dateAndTime.split(" ");
         LocalDate datePart = LocalDate.parse(split[0], DateTimeFormatter.ofPattern("d/MM/yyyy"));
@@ -27,13 +28,11 @@ public class Events extends Task {
         dateTime =  LocalDateTime.of(datePart, timePart);
     }
 
-    public String writingFile() {
-        return "E" + "|" + super.writingFile() + "|" + dateAndTime;
+    public String writingFile() { return "D" + "|" + super.writingFile() + "|" + dateAndTime; }
+
+    public String toString() {
+        return "[D]" + super.toString() + "(by: " + dateAndTime + ")";
     }
 
-    @Override
-    public String toString() {
-        return "[E]" + super.toString() + "(at: " + dateAndTime + ")";
-    }
 
 }

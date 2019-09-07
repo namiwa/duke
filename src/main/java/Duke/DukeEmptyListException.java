@@ -1,3 +1,5 @@
+package Duke;
+
 public class DukeEmptyListException extends DukeException {
 
     @Override

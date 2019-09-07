@@ -1,3 +1,5 @@
+package Duke;
+
 public class Duke {
     /**
      * Classes used for storage of data,

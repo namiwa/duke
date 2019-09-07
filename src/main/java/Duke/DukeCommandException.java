@@ -1,3 +1,5 @@
+package Duke;
+
 public class DukeCommandException extends DukeException {
 
     @Override
