@@ -1,9 +1,9 @@
-import java.util.Scanner;
-import java.util.ArrayList;
-import java.util.List;
-
 public class Duke {
-
+    /**
+     * Classes used for storage of data,
+     * Ui output and inputs and current
+     * active tasks in TaskList
+     */
     private Storage store;
     private Ui ui;
     private TaskList tasks;
@@ -14,6 +14,11 @@ public class Duke {
         tasks = new TaskList(store);
     }
 
+    /**
+     * The main run loop for Duke, requesting for user input
+     * and running valid commands. Invalid commands will be
+     * alerted to users.
+     */
     public void run() {
         ui.helloMsg();
         boolean isExit = false;
@@ -32,6 +37,10 @@ public class Duke {
         }
     }
 
+    /**
+     * Main entry point for Duke
+     * @param args Additional command line parameters, unused.
+     */
     public static void main(String[] args) {
         Duke duke = new Duke();
         duke.run();
