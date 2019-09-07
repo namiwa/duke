@@ -9,6 +9,11 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 public class Storage {
+    /**
+     * Path to storage data file
+     * Boolean flag to indicate if data file exists
+     *
+     */
     private Path path;
     private boolean fileExits;
 
@@ -21,7 +26,15 @@ public class Storage {
         return fileExits;
     }
 
-    void writeData(List<Task> taskList) {
+    void setFileExists() {
+        fileExits = Files.isRegularFile(path);
+    }
+
+    /**
+     * Writes current state of the taskList to data file
+     * @param taskList The current taskList being saved into text file
+     */
+    public void writeData(List<Task> taskList) {
         List<String> store = new ArrayList<>();
         for (Task temp : taskList) {
             store.add(temp.writingFile());
@@ -30,6 +43,7 @@ public class Storage {
             if (!fileExits) {
                 Files.createDirectories(path.getParent());
                 Files.createFile(path);
+                setFileExists();
             }
             Files.write(path, store, StandardCharsets.UTF_8);
         } catch (IOException e) {
@@ -37,6 +51,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Reads the stored data file, if it exists
+     * and returns the previously stored data as a TaskList
+     * @return List<Task> Updated state of taskList
+     */
     public List<Task> readData() {
      List<Task> list = new ArrayList<>();
      List<String> lines = Collections.emptyList();
