@@ -13,7 +13,7 @@ public class DeleteCommand extends Command {
             throw new DukeInvalidIndexException();
         } else {
             Task temp = tasks.getTasks().get(index - 1);
-            tasks.getTasks().remove(index - 1);
+            tasks.delete(index - 1);
             ui.deleteMsg(temp);
             store.writeData(tasks.getTasks());
         }

@@ -29,22 +29,6 @@ public class Ui {
         System.out.print(LINE);
     }
 
-    public void tryAgainCommand() {
-        System.out.println("Please input the right command!");
-    }
-
-    public void tryAgainCommandEmpty() {
-        System.out.println("Adding command cannot be empty!");
-    }
-
-    public void tryAgainNumber() {
-        System.out.println("Please input a number!");
-    }
-
-    public void tryAgainIndex() {
-        System.out.println("Please check your index");
-    }
-
     public void tryAgainListSize() {
         System.out.println("Please check your list size!");
     }
