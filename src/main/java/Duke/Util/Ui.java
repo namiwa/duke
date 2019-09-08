@@ -23,7 +23,7 @@ public class Ui {
 
     public void helloMsg() {
         System.out.println(
-                LINE +
+                        LINE +
                         "Hello! I'm Duke\n" +
                         "What can I do for you?\n" +
                         LINE);
