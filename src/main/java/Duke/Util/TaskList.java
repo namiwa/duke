@@ -1,7 +1,6 @@
 package Duke.Util;
 
-import Duke.Tasks.*;
-import Duke.Util.*;
+import Duke.Tasks.Task;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,10 +19,6 @@ public class TaskList {
         }
     }
 
-    public List<Task> getTasks() {
-        return tasks;
-    }
-
     /**
      * Returns list of tasks which have the search
      * keyword included in their task name.
@@ -38,6 +33,10 @@ public class TaskList {
             }
         }
         return temp;
+    }
+
+    public List<Task> getTasks() {
+        return tasks;
     }
 
     public void add(Task task) {

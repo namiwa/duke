@@ -1,6 +1,6 @@
 package Duke.Util;
 
-import Duke.Tasks.*;
+import Duke.Tasks.Task;
 
 import java.util.List;
 import java.util.Scanner;
@@ -13,7 +13,7 @@ public class Ui {
         scan = new Scanner(System.in);
     }
 
-    public void closeScan() {
+    private void closeScan() {
         scan.close();
     }
 
@@ -31,10 +31,6 @@ public class Ui {
 
     public void showLine() {
         System.out.print(LINE);
-    }
-
-    public void tryAgainListSize() {
-        System.out.println("Please check your list size!");
     }
 
     public void addedTaskMsg() {

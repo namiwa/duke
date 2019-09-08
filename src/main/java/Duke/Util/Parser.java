@@ -65,7 +65,7 @@ public class Parser {
      */
     private static Command deleteTask(String input) throws DukeEmptyCommandException, DukeCommandException {
         String[] split = input.split(" ", 2);
-        int index = -1;
+        int index;
         if (split[split.length - 1].equals("")) {
             throw new DukeEmptyCommandException();
         }

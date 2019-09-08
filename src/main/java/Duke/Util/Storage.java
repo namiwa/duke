@@ -30,7 +30,7 @@ public class Storage {
         return fileExits;
     }
 
-    void setFileExists() {
+    private void setFileExists() {
         fileExits = Files.isRegularFile(path);
     }
 
@@ -60,7 +60,7 @@ public class Storage {
      * and returns the previously stored data as a TaskList
      * @return List<Task> Updated state of taskList
      */
-    public List<Task> readData() {
+    List<Task> readData() {
      List<Task> list = new ArrayList<>();
      List<String> lines = Collections.emptyList();
 

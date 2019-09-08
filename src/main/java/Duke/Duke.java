@@ -28,7 +28,7 @@ public class Duke {
      * and running valid commands. Invalid commands will be
      * alerted to users.
      */
-    public void run() {
+    private void run() {
         ui.helloMsg();
         boolean isExit = false;
         while (!isExit) {
