@@ -1,5 +1,6 @@
 package Duke.Command;
 
+import Duke.Exceptions.DukeEmptyListException;
 import Duke.Util.*;
 
 public class ListCommand extends Command {
@@ -18,10 +19,10 @@ public class ListCommand extends Command {
      * @param store Storage object which updates stored data.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage store) {
-        isEmpty = tasks.getTasks().isEmpty();
+    public void execute(TaskList tasks, Ui ui, Storage store) throws DukeEmptyListException {
+        boolean isEmpty = tasks.getTasks().isEmpty();
         if (isEmpty) {
-            ui.tryAgainListSize();
+            throw new DukeEmptyListException();
         } else {
             ui.printTaskList(tasks.getTasks());
         }

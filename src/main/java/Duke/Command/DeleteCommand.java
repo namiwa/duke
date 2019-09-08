@@ -1,5 +1,6 @@
 package Duke.Command;
 
+import Duke.Exceptions.DukeEmptyListException;
 import Duke.Util.*;
 import Duke.Tasks.Task;
 import Duke.Exceptions.DukeInvalidIndexException;
@@ -22,9 +23,12 @@ public class DeleteCommand extends Command {
      * is not within the current range
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage store) throws DukeInvalidIndexException {
+    public void execute(TaskList tasks, Ui ui, Storage store) throws DukeInvalidIndexException, DukeEmptyListException {
+        boolean isEmpty = tasks.getTasks().isEmpty();
         if (index - 1 < 0 || index - 1 >= tasks.getTasks().size()) {
             throw new DukeInvalidIndexException();
+        } else if (isEmpty) {
+            throw new DukeEmptyListException();
         } else {
             Task temp = tasks.getTasks().get(index - 1);
             tasks.delete(index - 1);

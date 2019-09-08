@@ -24,7 +24,8 @@ public class FindCommand extends Command {
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage store) throws DukeEmptyListException {
-        if (tasks.getTasks().size() == 0) {
+        boolean isEmpty = tasks.getTasks().isEmpty();
+        if (isEmpty) {
             throw new DukeEmptyListException();
         }
         List<Task> temp = tasks.find(keyword);
