@@ -2,8 +2,6 @@ package Duke;
 
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
@@ -11,6 +9,11 @@ public class DukeTest {
 
     private static final String LINE = "_______________________________\n";
 
+    /**
+     * Testing the Duke class with bye as the only input
+     * and checking the expected output.
+     * Ignores the NullPointerException thrown by getOutput.
+     */
     @Test
      public void testDuke() {
         try {
@@ -26,8 +29,8 @@ public class DukeTest {
                             "Bye. Hope to see you again soon!" +
                             LINE;
             assertEquals(expected, output);
-        } catch (NullPointerException e) {
-            
+        } catch (NullPointerException ignored) {
+
         }
     }
 }
