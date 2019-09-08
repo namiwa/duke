@@ -16,6 +16,11 @@ public abstract class Command {
      * to throw specified exceptions when errors is encountered.
      */
     public abstract void execute(TaskList tasks, Ui ui, Storage store) throws DukeException;
+
+    /**
+     * Check if the command is the exit command.
+     * @return true if the command is the exit command.
+     */
     public abstract boolean isExit();
 
 

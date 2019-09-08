@@ -1,11 +1,11 @@
 package Duke.Command;
 
+import Duke.Util.TaskList;
+import Duke.Util.Storage;
+import Duke.Util.Ui;
 import Duke.Exceptions.DukeEmptyListException;
-import Duke.Util.*;
 
 public class ListCommand extends Command {
-
-    private boolean isEmpty;
 
     public ListCommand() {
 

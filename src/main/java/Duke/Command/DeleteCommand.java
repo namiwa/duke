@@ -1,9 +1,11 @@
 package Duke.Command;
 
-import Duke.Exceptions.DukeEmptyListException;
-import Duke.Util.*;
+import Duke.Util.TaskList;
+import Duke.Util.Storage;
+import Duke.Util.Ui;
 import Duke.Tasks.Task;
 import Duke.Exceptions.DukeInvalidIndexException;
+import Duke.Exceptions.DukeEmptyListException;
 
 public class DeleteCommand extends Command {
 

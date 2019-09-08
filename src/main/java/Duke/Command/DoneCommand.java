@@ -1,6 +1,8 @@
 package Duke.Command;
 
-import Duke.Util.*;
+import Duke.Util.TaskList;
+import Duke.Util.Storage;
+import Duke.Util.Ui;
 import Duke.Exceptions.DukeInvalidIndexException;
 
 public class DoneCommand extends Command {
