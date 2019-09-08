@@ -17,7 +17,7 @@ public class Duke {
     private Ui ui;
     private TaskList tasks;
 
-    private Duke() {
+    public Duke() {
         store = new Storage();
         ui = new Ui();
         tasks = new TaskList(store);
