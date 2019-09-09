@@ -5,6 +5,8 @@ import Duke.Util.Storage;
 import Duke.Util.Ui;
 import Duke.Exceptions.DukeInvalidIndexException;
 
+import java.util.Objects;
+
 public class DoneCommand extends Command {
 
     private int index;
@@ -13,6 +15,9 @@ public class DoneCommand extends Command {
         this.index = index;
     }
 
+    private int getIndex() {
+        return index;
+    }
     /**
      * Takes in TaskList, Ui and Storage objects which then marks
      * the task index which has been completed.
@@ -36,5 +41,22 @@ public class DoneCommand extends Command {
     @Override
     public boolean isExit() {
         return false;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof DoneCommand)) {
+            return false;
+        }
+        DoneCommand otherCommand = (DoneCommand) obj;
+        return otherCommand.getIndex() == otherCommand.getIndex();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(index);
     }
 }

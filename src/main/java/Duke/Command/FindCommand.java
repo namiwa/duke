@@ -7,6 +7,7 @@ import Duke.Util.Ui;
 import Duke.Exceptions.DukeEmptyListException;
 
 import java.util.List;
+import java.util.Objects;
 
 public class FindCommand extends Command {
 
@@ -16,6 +17,9 @@ public class FindCommand extends Command {
         this.keyword = keyword;
     }
 
+    private String getKeyword() {
+        return keyword;
+    }
     /**
      * Takes in TaskList, Ui and Storage objects which then displays
      * the active TaskList which contains the task names the user inputs.
@@ -36,5 +40,22 @@ public class FindCommand extends Command {
     @Override
     public boolean isExit() {
         return false;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof FindCommand)) {
+            return false;
+        }
+        FindCommand otherCommand = (FindCommand) obj;
+        return otherCommand.getKeyword() == otherCommand.getKeyword();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(keyword);
     }
 }

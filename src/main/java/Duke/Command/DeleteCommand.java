@@ -7,6 +7,8 @@ import Duke.Tasks.Task;
 import Duke.Exceptions.DukeInvalidIndexException;
 import Duke.Exceptions.DukeEmptyListException;
 
+import java.util.Objects;
+
 public class DeleteCommand extends Command {
 
     private int index;
@@ -15,6 +17,9 @@ public class DeleteCommand extends Command {
         this.index = index;
     }
 
+    private int getIndex() {
+        return index;
+    }
     /**
      * Takes in ui, tasks and store objects, and removes the tasks
      * based on the parsed user input.
@@ -42,5 +47,22 @@ public class DeleteCommand extends Command {
     @Override
     public boolean isExit() {
         return false;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof DeleteCommand)) {
+            return false;
+        }
+        DeleteCommand otherCommand = (DeleteCommand) obj;
+        return otherCommand.getIndex() == otherCommand.getIndex();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(index);
     }
 }

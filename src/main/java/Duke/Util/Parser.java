@@ -133,7 +133,7 @@ public class Parser {
             return deleteTask(input);
         } else if (input.equals("list")) {
             return new ListCommand();
-        } else if (input.equals("find ")) {
+        } else if (input.startsWith("find ")) {
            return parseFind(input);
         } else {
             throw new DukeCommandException();
