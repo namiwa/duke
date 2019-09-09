@@ -1,5 +1,7 @@
 package Duke.Tasks;
 
+import java.util.Objects;
+
 public class Task {
     /**
      * Task is the string value of the task name.
@@ -38,4 +40,21 @@ public class Task {
         String completed = (done) ? "[✓] " : "[✗] ";
         return completed + task;
     }
- }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if (!(other instanceof Task)) {
+            return false;
+        }
+        Task otherTask = (Task) other;
+        return otherTask.getTask().equals(this.getTask());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(task, done);
+    }
+}

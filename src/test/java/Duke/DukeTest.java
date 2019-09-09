@@ -21,7 +21,7 @@ public class DukeTest {
             Duke.main(new String[0]);
             String output = InputTest.getOutput();
             String expected =
-                    LINE +
+                            LINE +
                             "Hello! I'm Duke\n" +
                             "What can I do for you?\n" +
                             LINE +

@@ -11,6 +11,7 @@ import java.io.*;
   */
 public class InputTest {
 
+
     private final InputStream systemIn = System.in;
     private final OutputStream systemOut = System.out;
 
