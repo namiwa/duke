@@ -1,9 +1,9 @@
 package Duke.Tasks;
 
-import java.time.LocalDate;
+import Duke.Exceptions.DukeInvalidTimeException;
+import Duke.Util.DateTimeParser;
+
 import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 
 public class Deadline extends Task {
     private String dateAndTime;
@@ -11,22 +11,20 @@ public class Deadline extends Task {
 
     public Deadline(String... input) {
         super(input[0]);
+        dateTime = null;
         setDateAndTime(input[input.length - 1]);
     }
 
     private void setDateAndTime(String dateAndTime) {
-        if (dateAndTime.contains("/")) {
-            setStringToDate(dateAndTime);
+        try {
+            dateTime = DateTimeParser.getStringToDate(dateAndTime);
+        } catch (DukeInvalidTimeException e) {
+            System.out.println(e.getMessage());
         }
         this.dateAndTime = dateAndTime;
     }
 
-    private void setStringToDate(String dateAndTime) {
-        String[] split = dateAndTime.split(" ");
-        LocalDate datePart = LocalDate.parse(split[0], DateTimeFormatter.ofPattern("d/MM/yyyy"));
-        LocalTime timePart = LocalTime.parse(split[1], DateTimeFormatter.ofPattern("HHmm"));
-        dateTime =  LocalDateTime.of(datePart, timePart);
-    }
+
 
     public String writingFile() { return "D" + "|" + super.writingFile() + "|" + dateAndTime; }
 

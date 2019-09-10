@@ -3,6 +3,7 @@ package Duke.Util;
 import Duke.Command.*;
 import Duke.Exceptions.DukeCommandException;
 import Duke.Exceptions.DukeEmptyCommandException;
+import Duke.Exceptions.DukeInvalidTimeException;
 import Duke.Tasks.*;
 
 public class Parser {
@@ -48,7 +49,7 @@ public class Parser {
             throw new DukeEmptyCommandException();
         }
 
-        String[] res = inputs.split("/");
+        String[] res = inputs.split("/", 2);
         if (res.length == 0) {
             throw new DukeEmptyCommandException();
         }

@@ -48,8 +48,10 @@ public class Ui {
     }
 
     public void printTaskList(List<Task> taskList) {
+        int count = 1;
         for (Task temp : taskList) {
-            System.out.println(temp);
+            System.out.println(count + ". " +temp);
+            count++;
         }
     }
 

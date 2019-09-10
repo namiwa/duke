@@ -13,8 +13,12 @@ public class DeleteCommand extends Command {
 
     private int index;
 
+    /**
+     * Constructor for DeleteCommand.
+     * @param index is reduced by one to return to zero based indexing.
+     */
     public DeleteCommand(int index) {
-        this.index = index;
+        this.index = index - 1;
     }
 
     private int getIndex() {
@@ -32,13 +36,13 @@ public class DeleteCommand extends Command {
     @Override
     public void execute(TaskList tasks, Ui ui, Storage store) throws DukeInvalidIndexException, DukeEmptyListException {
         boolean isEmpty = tasks.getTasks().isEmpty();
-        if (index - 1 < 0 || index - 1 >= tasks.getTasks().size()) {
+        if (index < 0 || index >= tasks.getTasks().size()) {
             throw new DukeInvalidIndexException();
         } else if (isEmpty) {
             throw new DukeEmptyListException();
         } else {
-            Task temp = tasks.getTasks().get(index - 1);
-            tasks.delete(index - 1);
+            Task temp = tasks.getTasks().get(index);
+            tasks.delete(index);
             ui.deleteMsg(temp);
             store.writeData(tasks.getTasks());
         }

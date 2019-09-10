@@ -11,8 +11,12 @@ public class DoneCommand extends Command {
 
     private int index;
 
+    /**
+     * Constructor for DoneCommand.
+     * @param index is reduced by one to return to zero based indexing.
+     */
     public DoneCommand(int index) {
-        this.index = index;
+        this.index = index - 1;
     }
 
     private int getIndex() {
@@ -29,11 +33,11 @@ public class DoneCommand extends Command {
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage store) throws DukeInvalidIndexException {
-        if (index - 1 >= tasks.getTasks().size() || index - 1 < 0) {
+        if (index >= tasks.getTasks().size() || index < 0) {
             throw new DukeInvalidIndexException();
         } else {
-            tasks.getTasks().get(index - 1).setTaskDone();
-            ui.doneTaskMsg(tasks.getTasks().get(index - 1));
+            tasks.getTasks().get(index).setTaskDone();
+            ui.doneTaskMsg(tasks.getTasks().get(index));
             store.writeData(tasks.getTasks());
         }
     }
