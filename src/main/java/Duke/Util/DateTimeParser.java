@@ -2,7 +2,6 @@ package Duke.Util;
 
 import Duke.Exceptions.DukeInvalidTimeException;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
@@ -10,10 +9,15 @@ import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoField;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
 
 public class DateTimeParser {
 
+    /**
+     * Parser for date with or without time inputs for deadline and event tasks.
+     * @param dateAndTime Date and time portion of the user input string.
+     * @return LocalDateTime parsed based on the user input format.
+     * @throws DukeInvalidTimeException if user inputs a date format that is not supported by Duke.
+     */
     public static LocalDateTime getStringToDate(String dateAndTime) throws DukeInvalidTimeException {
         dateAndTime = dateAndTime.trim();
         dateAndTime = dateAndTime.strip();

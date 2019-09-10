@@ -24,8 +24,6 @@ public class Deadline extends Task {
         this.dateAndTime = dateAndTime;
     }
 
-
-
     public String writingFile() { return "D" + "|" + super.writingFile() + "|" + dateAndTime; }
 
     public String toString() {
