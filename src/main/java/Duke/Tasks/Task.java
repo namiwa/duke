@@ -11,7 +11,7 @@ public class Task {
     private Boolean done;
 
     public Task(String task) {
-        this.task = task;
+        this.task = task.trim();
         done = false;
     }
 
