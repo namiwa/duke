@@ -17,7 +17,7 @@ public class TaskList {
         } else {
             tasks = new ArrayList<>();
         }
-    }
+    }   
 
     /**
      * Returns list of tasks which have the search

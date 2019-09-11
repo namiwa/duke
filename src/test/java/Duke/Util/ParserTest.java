@@ -1,12 +1,12 @@
 package Duke.Util;
 
+import Duke.Duke;
 import Duke.Tasks.*;
 import Duke.Command.*;
 import Duke.Exceptions.*;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ParserTest {
 
@@ -19,24 +19,35 @@ public class ParserTest {
     }
 
     @Test
-    public void DoneCommandTest() throws DukeException {
-        DoneCommand done = new DoneCommand(3);
-        Command hold = Parser.parse("done 3");
-        assertEquals(done, hold);
+    public void DoneCommandTest() {
+        try {
+            DoneCommand done = new DoneCommand(3);
+            Command hold = Parser.parse("done 3");
+            assertEquals(done, hold);
+        } catch (DukeException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    @Test
+    public void DeleteCommandTest() {
+        try {
+            DeleteCommand delete = new DeleteCommand(2);
+            Command hold = Parser.parse("delete 2");
+            assertEquals(delete, hold);
+        } catch (DukeException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     @Test
-    public void DeleteCommandTest() throws DukeException {
-        DeleteCommand delete = new DeleteCommand(2);
-        Command hold = Parser.parse("delete 2");
-        assertEquals(delete, hold);
-    }
-
-    @Test
-    public void FindCommandTest() throws DukeException {
-        FindCommand add = new FindCommand("games test");
-        Command hold = Parser.parse("find games test");
-        assertEquals(add, hold);
+    public void FindCommandTest() {
+        try {
+            FindCommand add = new FindCommand("games test");
+            Command hold = Parser.parse("find games test");
+            assertEquals(add, hold);
+        } catch (DukeException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     @Test
@@ -48,4 +59,15 @@ public class ParserTest {
             System.out.println(e.getMessage());
         }
     }
+
+    @Test
+    public void testExceptions() {
+        DukeException thrown =
+                assertThrows(DukeException.class,
+                        () -> Parser.parse(""),
+                        "Expected to return Command Object but it didn't");
+        assertEquals("DukeException: Must be a valid command!", thrown.getMessage());
+    }
+
+
 }
