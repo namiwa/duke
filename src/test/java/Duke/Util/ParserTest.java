@@ -6,6 +6,7 @@ import Duke.Exceptions.*;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ParserTest {
 
@@ -36,5 +37,15 @@ public class ParserTest {
         FindCommand add = new FindCommand("games test");
         Command hold = Parser.parse("find games test");
         assertEquals(add, hold);
+    }
+
+    @Test
+    public void AllCommandTest() {
+        try {
+        assertTrue(Parser.parse("bye") instanceof ByeCommand);
+        assertTrue(Parser.parse("list") instanceof ListCommand);
+        } catch (DukeException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
