@@ -4,9 +4,9 @@ import Duke.Exceptions.DukeInvalidTimeException;
 import Duke.Util.DateTimeParser;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Events extends Task {
-    private String dateAndTime;
     private LocalDateTime dateTime;
 
     public Events(String... input) {
@@ -19,19 +19,20 @@ public class Events extends Task {
         try {
             dateTime = DateTimeParser.getStringToDate(dateAndTime);
         } catch (DukeInvalidTimeException e) {
-            System.out.println(e.getMessage());
+            System.out.println(e.getMessage() + " " + dateAndTime + getTask());
         }
-        this.dateAndTime = dateAndTime;
     }
 
 
     public String writingFile() {
-        return "E" + "|" + super.writingFile() + "|" + dateAndTime;
+        return "E" + "|" + super.writingFile() +
+                "|" + dateTime.format(DateTimeFormatter.ofPattern("dd-MM-yyyy [HH:mm]"));
     }
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + "(at: " + dateAndTime + ")";
+        return "[E]" + super.toString() +
+                "(at: " + dateTime.format(DateTimeFormatter.ofPattern("dd-MM-yyyy [HH:mm]")) + ")";
     }
 
 }

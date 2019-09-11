@@ -21,7 +21,7 @@ public class DateTimeParser {
     public static LocalDateTime getStringToDate(String dateAndTime) throws DukeInvalidTimeException {
         dateAndTime = dateAndTime.trim();
         dateAndTime = dateAndTime.strip();
-        List<String> formatStrings = Arrays.asList("dd-MM-yyyy", "dd/MM/yyyy", "dd-MMM-yyyy", "MM/d/yyyy",
+        List<String> formatStrings = Arrays.asList("dd-MM-yyyy", "dd/MM/yyyy", "dd-MMM-yyyy", "MM/d/yyyy", "d-MM-yyyy",
                 "MMM dd yyyy", "dd/MM/yyyy", "dd/MM/yyyy", "dd/MM/yyyy", "MM/dd/yyyy", "MM-dd-yyyy");
         int i = 0;
         LocalDateTime localDateTime = null;
@@ -32,6 +32,7 @@ public class DateTimeParser {
                         .optionalStart().appendPattern(" HH:mm").optionalEnd()
                         .optionalStart().appendPattern(" HHmm").optionalEnd()
                         .optionalStart().appendPattern(" hmm").optionalEnd()
+                        .optionalStart().appendPattern(" hm").optionalEnd()
                         .parseDefaulting(ChronoField.HOUR_OF_DAY, 0)
                         .parseDefaulting(ChronoField.MINUTE_OF_HOUR, 0)
                         .parseDefaulting(ChronoField.SECOND_OF_MINUTE, 0)
