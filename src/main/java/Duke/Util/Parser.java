@@ -3,8 +3,10 @@ package Duke.Util;
 import Duke.Command.*;
 import Duke.Exceptions.DukeCommandException;
 import Duke.Exceptions.DukeEmptyCommandException;
-import Duke.Exceptions.DukeInvalidTimeException;
-import Duke.Tasks.*;
+import Duke.Tasks.Deadline;
+import Duke.Tasks.Events;
+import Duke.Tasks.Task;
+import Duke.Tasks.Todo;
 
 public class Parser {
 
@@ -48,7 +50,6 @@ public class Parser {
         if (inputs.equals("todo")) {
             throw new DukeEmptyCommandException();
         }
-
         String[] res = inputs.split("/", 2);
         if (res.length == 0) {
             throw new DukeEmptyCommandException();
@@ -98,6 +99,7 @@ public class Parser {
      * @throws DukeEmptyCommandException when the user inputs and empty command
      */
     public static Command parse(String input) throws DukeCommandException, DukeEmptyCommandException {
+        //Checks every input for keyword command
         if (input.startsWith("todo ")) {
             String[] temp = input.split("todo ");
             String [] split = testRegex(temp[temp.length - 1]);
@@ -137,6 +139,7 @@ public class Parser {
         } else if (input.startsWith("find ")) {
            return parseFind(input);
         } else {
+            //throws invalid command exception when user inputs non-keywords
             throw new DukeCommandException();
         }
     }
