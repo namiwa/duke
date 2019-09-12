@@ -15,6 +15,11 @@ public class Deadline extends Task {
         setDateAndTime(input[input.length - 1]);
     }
 
+    /**
+     * Specific to deadline, the date data has to be stored
+     * into LocalDateTime object.
+     * @param dateAndTime String date and time associated with the task.
+     */
     private void setDateAndTime(String dateAndTime) {
         try {
             dateTime = DateTimeParser.getStringToDate(dateAndTime);
@@ -23,9 +28,11 @@ public class Deadline extends Task {
         }
     }
 
+    @Override
     public String writingFile() { return "D" + "|" + super.writingFile() +
             "|" + dateTime.format(DateTimeFormatter.ofPattern("dd-MM-yyyy [HH:mm]")); }
 
+    @Override
     public String toString() {
         return "[D]" + super.toString() +
                 " (by: " + dateTime.format(DateTimeFormatter.ofPattern("dd-MM-yyyy [HH:mm]")) + ")";
