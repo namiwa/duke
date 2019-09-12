@@ -22,23 +22,24 @@ public class Storage {
      *
      */
     private Path path;
-    private boolean fileExits;
+    private boolean fileExists;
 
     public Storage() {
         path = Paths.get("data/dukeData.text");
-        fileExits = Files.isRegularFile(path);
+        fileExists = Files.isRegularFile(path);
     }
 
     boolean getFileExits() {
-        return fileExits;
+        return fileExists;
     }
 
     private void setFileExists() {
-        fileExits = Files.isRegularFile(path);
+        fileExists = Files.isRegularFile(path);
     }
 
     /**
-     * Writes current state of the taskList to data file
+     * Writes current state of the taskList to data file. Creates the desired
+     * file and sets fileExits t
      * @param taskList The current taskList being saved into text file
      */
     public void writeData(List<Task> taskList) {
@@ -47,7 +48,7 @@ public class Storage {
             store.add(temp.writingFile());
         }
         try {
-            if (!fileExits) {
+            if (!fileExists) {
                 Files.createDirectories(path.getParent());
                 Files.createFile(path);
                 setFileExists();
